@@ -22,6 +22,7 @@ import {
 	deAlias,
 	processQueryResult,
 } from '../utils/helpers';
+import commonOptions from '../utils/options';
 import query from '../utils/query';
 
 const description = `Get information from <type> with parameters <input, input, ...>. Types available: accounts, addresses, blocks, delegates, transactions.
@@ -51,6 +52,9 @@ const list = createCommand({
 	autocomplete: COMMAND_TYPES,
 	description,
 	actionCreator,
+	options: [
+		commonOptions.testnet,
+	],
 	errorPrefix: 'Could not list',
 });
 

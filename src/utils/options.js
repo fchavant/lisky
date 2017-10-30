@@ -1,4 +1,4 @@
-const jsonDescription = 'Sets output to json. You can change the default behaviour in your config.json file.';
+const jsonDescription = 'Outputs the result as json. You can change the default behaviour in your config.json file.';
 
 const messageDescription = `Specifies a source for providing a message to the command. If a string is provided directly as an argument, this option will be ignored. The message must be provided via an argument or via this option. Sources must be one of \`file\` or \`stdin\`. In the case of \`file\`, a corresponding identifier must also be provided.
 
@@ -9,7 +9,7 @@ const messageDescription = `Specifies a source for providing a message to the co
 	- --message stdin
 `;
 
-const noJsonDescription = 'Sets output to text (default). You can change the default behaviour in your config.json file.';
+const noJsonDescription = 'Outputs the result in a table (default). You can change the default behaviour in your config.json file.';
 
 const passphraseDescription = `Specifies a source for your secret passphrase. Lisky will prompt you for input if this option is not set. Source must be one of \`env\`, \`file\` or \`stdin\`. Except for \`stdin\`, a corresponding identifier must also be provided.
 
@@ -40,6 +40,13 @@ const passwordDescription = `Specifies a source for your secret password. Lisky 
 
 const prettyDescription = 'Prints json in pretty format rather than condensed. Has no effect if json option is false. You can change the default behaviour in your config.json file.';
 
+const testnetDescription = `Specifies whether to run the command against the testnet. You can change the default behaviour in your config.json file.
+
+	Examples:
+	- --testnet (runs against testnet)
+	- --testnet false (runs against mainnet)
+`;
+
 const options = {
 	json: ['-j, --json', jsonDescription],
 	message: ['-m, --message <source>', messageDescription],
@@ -48,6 +55,7 @@ const options = {
 	secondPassphrase: ['-s, --second-passphrase <source>', secondPassphraseDescription],
 	password: ['-w, --password <source>', passwordDescription],
 	pretty: ['--pretty', prettyDescription],
+	testnet: ['--testnet', testnetDescription],
 };
 
 export default options;

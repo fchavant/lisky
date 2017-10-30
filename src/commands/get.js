@@ -19,6 +19,7 @@ import {
 	deAlias,
 	processQueryResult,
 } from '../utils/helpers';
+import commonOptions from '../utils/options';
 import query from '../utils/query';
 
 const description = `Get information from <type> with parameter <input>. Types available: account, address, block, delegate, transaction.
@@ -42,6 +43,9 @@ const get = createCommand({
 	autocomplete: COMMAND_TYPES,
 	description,
 	actionCreator,
+	options: [
+		commonOptions.testnet,
+	],
 	errorPrefix: 'Could not get',
 });
 
