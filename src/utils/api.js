@@ -16,4 +16,6 @@
 import lisk from 'lisk-js';
 import config from './env';
 
-export default lisk.api(config.liskJS);
+const liskAPIInstance = lisk.api(config.liskJS);
+
+export default liskAPIInstance;

@@ -14,6 +14,30 @@
  *
  */
 import lisk from 'lisk-js';
+import {
+	getFirstBoolean,
+} from '../utils';
+
+export function itShouldNotSetTheLiskAPIInstanceTestnetSetting() {
+	const { liskAPIInstance } = this.test.ctx;
+	return (liskAPIInstance.setTestnet).should.not.be.called();
+}
+
+export function itShouldSetTheLiskAPIInstanceTestnetSettingTo() {
+	const { liskAPIInstance } = this.test.ctx;
+	const setting = getFirstBoolean(this.test.title);
+	return (liskAPIInstance.setTestnet.firstCall).should.be.calledWith(setting);
+}
+
+export function itShouldSetTheLiskAPIInstanceTestnetSettingBackToTheOriginalSetting() {
+	const { liskAPIInstance } = this.test.ctx;
+	return (liskAPIInstance.setTestnet.secondCall).should.be.calledWith(false);
+}
+
+export function itShouldUseTheLiskAPIInstanceToSendARequestToTheEndpointUsingTheParameters() {
+	const { liskAPIInstance, endpoint, parameters } = this.test.ctx;
+	return (liskAPIInstance.sendRequest).should.be.calledWithExactly(endpoint, parameters);
+}
 
 export function theliskAPIInstanceShouldBeALiskJSApiInstance() {
 	const { liskAPIInstance } = this.test.ctx;

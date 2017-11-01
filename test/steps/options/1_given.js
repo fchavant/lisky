@@ -21,6 +21,10 @@ import {
 	hasAncestorWithTitleMatching,
 } from '../utils';
 
+export function anOptionsObject() {
+	this.test.ctx.options = {};
+}
+
 export function anArrayOfOptions() {
 	const options = getQuotedStrings(this.test.parent.title);
 	this.test.ctx.options = options;

@@ -18,7 +18,7 @@ import * as when from '../../steps/2_when';
 import * as then from '../../steps/3_then';
 
 describe('Query class', () => {
-	describe('Given a lisk API instance', () => {
+	describe('Given a Lisk API instance', () => {
 		beforeEach(given.aliskAPIInstance);
 		describe('Given a query instance', () => {
 			beforeEach(given.aQueryInstance);
@@ -27,6 +27,36 @@ describe('Query class', () => {
 			it('Then the query instance should have a handler for "block"', then.theQueryInstanceShouldHaveAHandlerFor);
 			it('Then the query instance should have a handler for "delegate"', then.theQueryInstanceShouldHaveAHandlerFor);
 			it('Then the query instance should have a handler for "transaction"', then.theQueryInstanceShouldHaveAHandlerFor);
+			describe('#sendRequest', () => {
+				describe('Given an endpoint "delegates/get"', () => {
+					beforeEach(given.anEndpoint);
+					describe('Given a parameters object', () => {
+						beforeEach(given.aParametersObject);
+						describe('Given the parameters object has key "username" set to "lightcurve"', () => {
+							beforeEach(given.theParametersObjectHasKeySetTo);
+							describe('When the query instance sends a request using the endpoint and the parameters', () => {
+								beforeEach(when.theQueryInstanceSendsARequestUsingTheEndpointAndTheParameters);
+								it('Then it should not set the Lisk API instance testnet setting', then.itShouldNotSetTheLiskAPIInstanceTestnetSetting);
+								it('Then it should use the Lisk API instance to send a request to the endpoint using the parameters', then.itShouldUseTheLiskAPIInstanceToSendARequestToTheEndpointUsingTheParameters);
+								it('Then it should resolve to the result of sending the request', then.itShouldResolveToTheResultOfSendingTheRequest);
+							});
+							describe('Given an options object', () => {
+								beforeEach(given.anOptionsObject);
+								describe('Given the options object has key "testnet" set to boolean true', () => {
+									beforeEach(given.theOptionsObjectHasKeySetToBoolean);
+									describe('When the query instance sends a request using the endpoint, the parameters and the options', () => {
+										beforeEach(when.theQueryInstanceSendsARequestUsingTheEndpointTheParametersAndTheOptions);
+										it('Then it should set the Lisk API instance testnet setting to true', then.itShouldSetTheLiskAPIInstanceTestnetSettingTo);
+										it('Then it should use the Lisk API instance to send a request to the endpoint using the parameters', then.itShouldUseTheLiskAPIInstanceToSendARequestToTheEndpointUsingTheParameters);
+										it('Then it should set the Lisk API instance testnet setting back to the original setting', then.itShouldSetTheLiskAPIInstanceTestnetSettingBackToTheOriginalSetting);
+										it('Then it should resolve to the result of sending the request', then.itShouldResolveToTheResultOfSendingTheRequest);
+									});
+								});
+							});
+						});
+					});
+				});
+			});
 			describe('#getBlock', () => {
 				describe('Given a block ID "5650160629533476718"', () => {
 					beforeEach(given.aBlockID);
