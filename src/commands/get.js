@@ -29,12 +29,12 @@ const description = `Get information from <type> with parameter <input>. Types a
 	- get block 5510510593472232540
 `;
 
-export const actionCreator = () => async ({ type, input }) => {
+export const actionCreator = () => async ({ type, input, options: { testnet } }) => {
 	if (!COMMAND_TYPES.includes(type)) {
 		throw new Error('Unsupported type.');
 	}
 
-	return query.handlers[deAlias(type)](input)
+	return query.handlers[deAlias(type)](input, { testnet })
 		.then(processQueryResult(type));
 };
 
