@@ -2,6 +2,9 @@ pipeline:
   build:
     image: node:6
     commands: npm install
+  lint:
+    image: node:6
+    commands: npm run lint
   test:
     image: node:6
     commands: npm run test 
