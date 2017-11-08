@@ -1,7 +1,7 @@
 pipeline:
   build:
-    image: node:latest
+    image: node:6
     commands: npm install
   test:
-    image: node:latest
+    image: node:6
     commands: npm run test 
